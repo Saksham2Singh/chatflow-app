@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #7c3aed;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --danger: #dc2626;
+    --success: #16a34a;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.brand-icon {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #ffffff;
+    font-weight: 800;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+}
+
+.error-message {
+    display: block;
+    min-height: 18px;
+    margin-top: 7px;
+    color: var(--danger);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.reply-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-left:4px solid #2a7f72;background:#eef7f5;margin:0 12px;border-radius:8px}.reply-bar div{display:grid}.reply-bar small{color:#2a7f72}.reply-bar button,.message-actions button,.pin-chat-button{border:0;background:transparent;cursor:pointer}.reply-preview{display:grid;width:100%;text-align:left;border:0;border-left:3px solid #2a7f72;background:rgba(0,0,0,.05);padding:6px 8px;border-radius:6px;margin-bottom:5px}.reply-preview small{color:#2a7f72}.message-actions{display:none;gap:4px;position:absolute;top:-18px;right:4px;background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:2px}.message-bubble{position:relative}.message-bubble:hover .message-actions{display:flex}.pin-chat-button{font-size:20px;margin-left:auto;color:#aa7c00}.admin-action{padding:6px 9px;margin:2px;border:1px solid #ccd6d4;border-radius:7px;background:#fff;cursor:pointer}.admin-action.danger{color:#b42318;border-color:#f1b8b3}.success-message{color:#16803a;font-size:.85rem}.brand-logo-image{width:34px;height:34px;object-fit:contain;border-radius:9px}

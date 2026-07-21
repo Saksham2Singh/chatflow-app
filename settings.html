@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | ChatFlow</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/chats.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+<main class="chats-page">
+  <section class="settings-shell">
+    <header class="topbar">
+      <a href="chats.html" class="back-text">← Back to chats</a>
+      <h1>Settings</h1>
+      <button id="logoutButton" class="secondary-action" type="button">Logout</button>
+    </header>
+
+    <section class="settings-card profile-settings-card">
+      <div id="settingsAvatar" class="profile-avatar">U</div>
+      <div class="settings-profile-details">
+        <h2 id="settingsName">Loading...</h2>
+        <p id="settingsPhone"></p>
+        <p id="settingsEmail"></p>
+        <a href="profile.html" class="primary-action inline-action">Edit profile</a>
+      </div>
+    </section>
+
+    <form id="settingsForm">
+      <section class="settings-card">
+        <h2>Privacy</h2>
+        <div class="settings-grid">
+          <label>Last seen
+            <select id="lastSeenPrivacy"><option value="EVERYONE">Everyone</option><option value="CONTACTS">My contacts</option><option value="NOBODY">Nobody</option></select>
+          </label>
+          <label>Profile photo
+            <select id="photoPrivacy"><option value="EVERYONE">Everyone</option><option value="CONTACTS">My contacts</option><option value="NOBODY">Nobody</option></select>
+          </label>
+          <label>About
+            <select id="aboutPrivacy"><option value="EVERYONE">Everyone</option><option value="CONTACTS">My contacts</option><option value="NOBODY">Nobody</option></select>
+          </label>
+          <label class="toggle-row"><span>Read receipts</span><input id="readReceipts" type="checkbox"></label>
+        </div>
+      </section>
+
+      <section class="settings-card">
+        <h2>App preferences</h2>
+        <div class="settings-grid">
+          <label>Theme
+            <select id="theme"><option value="LIGHT">Light</option><option value="DARK">Dark</option><option value="SYSTEM">System default</option></select>
+          </label>
+          <label class="toggle-row"><span>Message notifications</span><input id="notifications" type="checkbox"></label>
+        </div>
+        <button class="primary-action inline-action" type="submit">Save settings</button>
+        <p id="settingsMessage" class="status-message"></p>
+      </section>
+    </form>
+
+    <section class="settings-card">
+      <h2>Blocked users</h2>
+      <p>Enter a registered ChatFlow phone number to block that account.</p>
+      <form id="blockForm" class="block-form">
+        <input id="blockPhone" type="tel" placeholder="10-digit mobile number" required>
+        <button class="secondary-action" type="submit">Block user</button>
+      </form>
+      <div id="blockedList" class="blocked-list"></div>
+    </section>
+
+    <section class="settings-card">
+      <h2>Account information</h2>
+      <div class="account-stats">
+        <div><strong id="totalChats">0</strong><span>Chats</span></div>
+        <div><strong id="totalMessages">0</strong><span>Messages sent</span></div>
+        <div><strong id="joinedDate">—</strong><span>Joined</span></div>
+        <div><strong id="lastLogin">—</strong><span>Last login</span></div>
+      </div>
+    </section>
+
+    <section class="settings-card">
+      <h2>App status</h2>
+      <div class="status-list">
+        <p><span id="backendDot" class="status-dot"></span> Backend API: <strong id="backendStatus">Checking...</strong></p>
+        <p><span class="status-dot online"></span> Database: <strong>PostgreSQL connected</strong></p>
+        <p><span class="status-dot online"></span> Messaging: <strong>Real-time Socket.IO enabled</strong></p>
+        <p>App version: <strong>1.0.0</strong></p>
+        <p>Login security: <strong>OTP-based authentication</strong></p>
+      </div>
+    </section>
+
+    <section class="settings-card danger-card">
+      <h2>Delete account</h2>
+      <p>This permanently removes your profile, messages and login history. This action cannot be undone.</p>
+      <button id="deleteAccountButton" class="danger-button" type="button">Delete my account</button>
+    </section>
+  </section>
+</main>
+<script src="js/main.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

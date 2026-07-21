@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              String               @id @default(cuid())
+  phone           String               @unique
+  email           String?              @unique
+  fullName        String?
+  username        String?              @unique
+  about           String               @default("Hey there! I am using ChatFlow.")
+  photo           String?
+  profileComplete Boolean              @default(false)
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  lastSeen        DateTime?
+  memberships     ConversationMember[]
+  sentMessages    Message[]            @relation("SentMessages")
+  loginEvents     LoginEvent[]
+  lastSeenPrivacy String               @default("EVERYONE")
+  photoPrivacy    String               @default("EVERYONE")
+  aboutPrivacy    String               @default("EVERYONE")
+  readReceipts    Boolean              @default(true)
+  notifications   Boolean              @default(true)
+  theme           String               @default("LIGHT")
+  isDisabled      Boolean              @default(false)
+  disabledAt      DateTime?
+  blockedUsers    BlockedUser[]        @relation("UserBlocks")
+  blockedByUsers  BlockedUser[]        @relation("BlockedByUsers")
+  messageDeletions MessageDeletion[]
+}
+
+model LoginEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model OtpCode {
+  id        String   @id @default(cuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([phone, createdAt])
+}
+
+model Conversation {
+  id        String               @id @default(cuid())
+  type      ConversationType     @default(DIRECT)
+  directKey String?              @unique
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+  members   ConversationMember[]
+  messages  Message[]
+}
+
+model ConversationMember {
+  id             String       @id @default(cuid())
+  conversationId String
+  userId         String
+  joinedAt       DateTime     @default(now())
+  lastReadAt     DateTime?
+  pinnedAt       DateTime?
+  clearedAt      DateTime?
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+  @@index([userId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  senderId       String
+  type           MessageType  @default(TEXT)
+  text           String       @default("")
+  fileUrl        String?
+  fileName       String?
+  mimeType       String?
+  fileSize       Int?
+  contactName    String?
+  contactPhone   String?
+  createdAt      DateTime     @default(now())
+  deliveredAt    DateTime?
+  readAt         DateTime?
+  replyToId      String?
+  replyTo        Message?     @relation("MessageReplies", fields: [replyToId], references: [id], onDelete: SetNull)
+  replies        Message[]    @relation("MessageReplies")
+  deletions      MessageDeletion[]
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User         @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+}
+
+enum ConversationType {
+  DIRECT
+  GROUP
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  PDF
+  FILE
+  CONTACT
+}
+
+model MessageDeletion {
+  id        String   @id @default(cuid())
+  messageId String
+  userId    String
+  createdAt DateTime @default(now())
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId])
+  @@index([userId])
+}
+
+model BlockedUser {
+  id        String   @id @default(cuid())
+  blockerId String
+  blockedId String
+  createdAt DateTime @default(now())
+
+  blocker User @relation("UserBlocks", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked User @relation("BlockedByUsers", fields: [blockedId], references: [id], onDelete: Cascade)
+
+  @@unique([blockerId, blockedId])
+  @@index([blockerId])
+  @@index([blockedId])
+}

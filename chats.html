@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chats | ChatFlow</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/chats.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+    <main class="chats-page">
+        <section class="chat-shell">
+            <header class="topbar">
+                <a href="chats.html" class="compact-brand">
+                    <img class="brand-logo-image" src="assets/chatflow-icon-192.png" alt="ChatFlow">
+                    <span>ChatFlow</span>
+                </a>
+
+                <div class="topbar-actions">
+                    <a href="settings.html" class="icon-button" aria-label="Settings">⚙</a>
+                    <button type="button" id="logoutButton" class="icon-button" aria-label="Logout">↪</button>
+                </div>
+            </header>
+
+            <section class="user-summary">
+                <a href="profile.html" id="currentUserAvatar" class="profile-avatar" aria-label="Edit profile">SS</a>
+                <div>
+                    <h1 id="currentUserName">Your Chats</h1>
+                    <p id="currentUserAbout">Start a conversation with people you know.</p>
+                </div>
+            </section>
+
+            <div class="search-row">
+                <input
+                    type="search"
+                    id="chatSearch"
+                    placeholder="Search chats by name, phone or username"
+                    autocomplete="off"
+                >
+
+                <button type="button" id="newChatButton" class="new-chat-button">
+                    New Chat
+                </button>
+            </div>
+
+            <section id="chatList" class="chat-list" aria-live="polite"></section>
+
+            <section id="emptyState" class="empty-state">
+                <div class="empty-icon">💬</div>
+                <h2>No conversations yet</h2>
+                <p>
+                    Find a registered contact or invite someone to ChatFlow.
+                </p>
+                <button type="button" id="emptyNewChatButton" class="primary-action">
+                    Start your first chat
+                </button>
+            </section>
+        </section>
+    </main>
+
+    <div id="contactModal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+            <header class="modal-header">
+                <div>
+                    <p class="eyebrow">Contacts</p>
+                    <h2 id="contactModalTitle">Start a new chat</h2>
+                </div>
+                <button type="button" class="close-button" data-close-modal aria-label="Close">×</button>
+            </header>
+
+            <button type="button" id="pickContactsButton" class="contact-option">
+                <span>📇</span>
+                <div>
+                    <strong>Select from phone contacts</strong>
+                    <small>Works only on supported mobile browsers.</small>
+                </div>
+            </button>
+
+            <div class="manual-contact-form">
+                <h3>Add a contact manually</h3>
+
+                <input id="contactName" type="text" placeholder="Contact name">
+                <input id="contactPhone" type="tel" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric">
+
+                <small id="contactError" class="error-message"></small>
+
+                <button type="button" id="checkContactButton" class="primary-action">
+                    Check availability
+                </button>
+            </div>
+
+            <div id="contactResult" class="contact-result"></div>
+        </section>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chats.js"></script>
+</body>
+</html>

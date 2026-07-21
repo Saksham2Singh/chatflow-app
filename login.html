@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ChatFlow</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card">
+            <a href="index.html" class="auth-brand">
+                <img class="brand-logo-image" src="assets/chatflow-icon-192.png" alt="ChatFlow">
+                <span>ChatFlow</span>
+            </a>
+
+            <div class="auth-heading">
+                <p class="eyebrow">Welcome</p>
+                <h1>Enter your phone number</h1>
+                <p>
+                    We will send you a one-time verification code.
+                </p>
+            </div>
+
+            <form id="loginForm" class="auth-form" novalidate>
+                <label for="phoneNumber">Mobile Number</label>
+
+                <div class="phone-field">
+                    <select id="countryCode" aria-label="Country code">
+                        <option value="+91">+91</option>
+                    </select>
+
+                    <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        placeholder="98765 43210"
+                        maxlength="10"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                    >
+                </div>
+
+                <small id="phoneError" class="error-message"></small>
+
+                <button type="submit" class="auth-button">
+                    Continue
+                </button>
+            </form>
+
+            <p class="privacy-note">
+                By continuing, you agree to our Terms and Privacy Policy.
+            </p>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

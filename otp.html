@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP | ChatFlow</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card">
+            <a href="login.html" class="back-link">← Change number</a>
+
+            <a href="index.html" class="auth-brand">
+                <img class="brand-logo-image" src="assets/chatflow-icon-192.png" alt="ChatFlow">
+                <span>ChatFlow</span>
+            </a>
+
+            <div class="auth-heading">
+                <p class="eyebrow">Verification</p>
+                <h1>Enter the 6-digit code</h1>
+                <p id="otpDescription">
+                    We sent a code to your mobile number.
+                </p>
+            </div>
+
+            <form id="otpForm" class="auth-form" novalidate>
+                <div class="otp-grid" id="otpGrid">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+                </div>
+
+                <small id="otpError" class="error-message"></small>
+
+                <button type="submit" class="auth-button">
+                    Verify and Continue
+                </button>
+            </form>
+
+            <button type="button" id="resendButton" class="text-button">
+                Resend code
+            </button>
+
+            <p class="demo-note">
+                Frontend demo OTP: <strong>123456</strong>
+            </p>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/otp.js"></script>
+</body>
+</html>

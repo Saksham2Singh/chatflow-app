@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | ChatFlow</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+    <main class="register-page">
+        <section class="register-card">
+            <div class="register-header">
+                <a href="chats.html" class="brand-logo">ChatFlow</a>
+                <p class="eyebrow">My account</p>
+                <h1>Your profile details</h1>
+                <p>View your phone number and update the details people see on ChatFlow.</p>
+            </div>
+
+            <form id="profileForm" class="register-form" novalidate>
+                <div class="photo-picker">
+                    <div id="photoPreview" class="photo-preview">SS</div>
+
+                    <div>
+                        <label for="profilePhoto" class="photo-button">
+                            Choose photo
+                        </label>
+                        <input id="profilePhoto" type="file" accept="image/*" hidden>
+                        <p>JPG or PNG, up to 5 MB.</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" readonly aria-readonly="true">
+                    <small>Your login phone number cannot be changed here.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email address" autocomplete="email">
+                    <small id="emailError" class="error-message"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                    >
+                    <small id="fullNameError" class="error-message"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Choose a unique username"
+                        maxlength="20"
+                        autocomplete="username"
+                    >
+                    <small id="usernameError" class="error-message"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="about">About</label>
+                    <input
+                        type="text"
+                        id="about"
+                        placeholder="Hey there! I am using ChatFlow."
+                        maxlength="80"
+                    >
+                    <small id="aboutError" class="error-message"></small>
+                </div>
+
+                <button type="submit" class="primary-button">
+                    Save Profile
+                </button>
+            </form>
+
+            <a href="chats.html" class="secondary-link">← Back to chats</a>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

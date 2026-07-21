@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation | ChatFlow</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+    <main class="conversation-page">
+        <section class="conversation-shell">
+            <header class="conversation-header">
+                <a href="chats.html" class="back-button" aria-label="Back to chats">←</a>
+
+                <div id="contactAvatar" class="contact-avatar">?</div>
+
+                <button type="button" id="contactDetailsButton" class="contact-details contact-details-button" aria-label="View contact details">
+                    <h1 id="contactName">Conversation</h1>
+                    <p id="contactStatus">Offline</p>
+                </button>
+
+                <button type="button" id="clearChatButton" class="header-icon-button" aria-label="Clear chat">🧹</button>
+                <button type="button" id="moreButton" class="header-button" aria-label="More options">⋮</button>
+            </header>
+
+            <section id="messagesContainer" class="messages-container" aria-live="polite">
+                <div class="date-chip">Today</div>
+            </section>
+
+            <div id="replyBar" class="reply-bar" hidden><div><small>Replying to</small><strong id="replyText"></strong></div><button id="cancelReply" type="button">×</button></div>
+            <form id="messageForm" class="message-form">
+                <button type="button" id="attachmentButton" class="message-action" aria-label="Attach file">＋</button>
+
+                <textarea
+                    id="messageInput"
+                    rows="1"
+                    maxlength="1000"
+                    placeholder="Type a message"
+                ></textarea>
+
+                <button type="submit" id="sendButton" class="send-button" aria-label="Send message">➤</button>
+            </form>
+
+            <div id="attachmentMenu" class="attachment-menu">
+                <button type="button" data-file-type="image">🖼 Image</button>
+                <button type="button" data-file-type="pdf">📄 PDF</button>
+                <button type="button" id="sendContactButton">📇 Contact</button>
+            </div>
+            <input id="fileInput" type="file" hidden>
+        </section>
+    </main>
+
+
+    <div id="profileModal" class="profile-modal" aria-hidden="true">
+        <div class="profile-modal-backdrop" data-close-profile></div>
+        <section class="profile-modal-card" role="dialog" aria-modal="true" aria-labelledby="profileModalName">
+            <button type="button" class="profile-close" data-close-profile aria-label="Close">×</button>
+            <div id="profileModalAvatar" class="profile-modal-avatar">?</div>
+            <h2 id="profileModalName">Contact</h2>
+            <p id="profileModalPhone"></p>
+            <div class="profile-detail-row">
+                <span>About</span>
+                <strong id="profileModalAbout">Available on ChatFlow</strong>
+            </div>
+            <div class="profile-detail-row">
+                <span>Username</span>
+                <strong id="profileModalUsername">Not set</strong>
+            </div>
+        </section>
+    </div>
+
+    <div id="contactShareModal" class="profile-modal" aria-hidden="true">
+        <div class="profile-modal-backdrop" data-close-contact-share></div>
+        <section class="profile-modal-card">
+            <button type="button" class="profile-close" data-close-contact-share>×</button>
+            <h2>Share a contact</h2>
+            <input id="shareContactName" type="text" placeholder="Contact name">
+            <input id="shareContactPhone" type="tel" placeholder="Phone number">
+            <small id="shareContactError" class="error-message"></small>
+            <button id="confirmShareContact" type="button" class="primary-action">Send Contact</button>
+        </section>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

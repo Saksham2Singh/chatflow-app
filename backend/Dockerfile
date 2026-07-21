@@ -2,11 +2,12 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+# Poora project copy hoga: frontend + backend
+COPY . .
+
+WORKDIR /app/backend
 
 RUN npm ci
-
-COPY . .
 
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
